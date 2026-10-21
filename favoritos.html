@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tus destinos guardados.">
+  <meta name="theme-color" content="#2f6bc4">
+  <title>Favoritos · easytravel</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera-sitio">
+    <div class="contenedor cabecera-sitio__interior">
+      <a href="index.html" aria-label="easytravel, ir al inicio"><span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span></a>
+
+      <nav class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="explorar.html">Explorar destinos</a></li>
+          <li><a href="favoritos.html" aria-current="page">Favoritos</a></li>
+          <li><a href="itinerario.html">Mi itinerario</a></li>
+          <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+      </nav>
+
+      <div class="cabecera-sitio__acciones">
+        <a class="boton-icono" href="favoritos.html" aria-label="Favoritos, 4 guardados" title="Favoritos"><span class="icono icono--corazon" aria-hidden="true"></span><span class="contador">4</span></a>
+        <a class="boton boton--sm boton--primario cabecera-sitio__llamado" href="itinerario.html#nuevo-plan">Crear itinerario</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor pagina">
+
+      <div class="cabecera-pagina">
+        <div>
+          <nav class="migas" aria-label="Ruta de navegación">
+            <ol>
+              <li><a href="index.html">Inicio</a></li>
+              <li aria-current="page">Favoritos</li>
+            </ol>
+          </nav>
+          <div class="cabecera-pagina__titulo">
+            <h1>Mis destinos</h1>
+            <span class="insignia insignia--peligro">4 guardados</span>
+          </div>
+          <p class="cabecera-pagina__subtitulo">Se guardan en este navegador y se conservan aunque cierres la pestaña.</p>
+        </div>
+        <div class="cabecera-pagina__acciones">
+          <button class="boton boton--sm boton--contorno" type="button"><span class="icono icono--descargar" aria-hidden="true"></span> Exportar lista</button>
+          <a class="boton boton--sm boton--peligro" href="#confirmar-vaciar">Vaciar favoritos</a>
+          <a class="boton boton--sm boton--primario" href="explorar.html"><span class="icono icono--mas" aria-hidden="true"></span> Explorar más destinos</a>
+        </div>
+      </div>
+
+      <div class="alerta alerta--aviso alerta-duplicado mt-6" id="aviso-duplicado" role="alert">
+        <div class="alerta__contenido">
+          <span class="icono icono--aviso icono--lg" aria-hidden="true"></span>
+          <div>
+            <p class="alerta__titulo">Japón ya estaba en tus favoritos</p>
+            <p class="alerta__texto">El sistema evita registros duplicados: si el destino ya existe, no se agrega de nuevo.</p>
+          </div>
+        </div>
+        <a class="boton boton--sm boton--fantasma" href="#">Entendido</a>
+      </div>
+
+      <div class="barra-filtros">
+        <div class="filtros">
+          <a class="filtro es-activo" href="favoritos.html" aria-current="true">Todos (4)</a>
+          <a class="filtro" href="favoritos.html">América (1)</a>
+          <a class="filtro" href="favoritos.html">Asia (1)</a>
+          <a class="filtro" href="favoritos.html">Europa (2)</a>
+        </div>
+        <label class="orden">
+          Ordenar por
+          <select class="selector">
+            <option>Fecha de guardado</option>
+            <option>Nombre A–Z</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="rejilla-tarjetas solo-escritorio mt-6">
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/jp.svg" alt="Bandera de Japón" loading="lazy">
+            <button class="boton-icono boton-icono--favorito es-activo boton-icono--sm" type="button" aria-pressed="true" aria-label="Quitar Japón de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo">Japón</h3>
+                <p class="tarjeta-pais__subtitulo">Tokio · Asia</p>
+              </div>
+              <span class="insignia insignia--primario">En itinerario</span>
+            </div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 18 °C · Parcialmente nublado</li>
+              <li><span class="icono icono--calendario icono--sm" aria-hidden="true"></span> Guardado el 28 de sept</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar Japón de favoritos" title="Eliminar"><span class="icono icono--papelera" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/es.svg" alt="Bandera de España" loading="lazy">
+            <button class="boton-icono boton-icono--favorito es-activo boton-icono--sm" type="button" aria-pressed="true" aria-label="Quitar España de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo">España</h3>
+                <p class="tarjeta-pais__subtitulo">Madrid · Europa</p>
+              </div>
+              <span class="insignia insignia--primario">En itinerario</span>
+            </div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 26 °C · Despejado</li>
+              <li><span class="icono icono--calendario icono--sm" aria-hidden="true"></span> Guardado el 21 de sept</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar España de favoritos" title="Eliminar"><span class="icono icono--papelera" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/it.svg" alt="Bandera de Italia" loading="lazy">
+            <button class="boton-icono boton-icono--favorito es-activo boton-icono--sm" type="button" aria-pressed="true" aria-label="Quitar Italia de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo">Italia</h3>
+                <p class="tarjeta-pais__subtitulo">Roma · Europa</p>
+              </div>
+            </div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 22 °C · Parcialmente nublado</li>
+              <li><span class="icono icono--calendario icono--sm" aria-hidden="true"></span> Guardado el 14 de sept</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar Italia de favoritos" title="Eliminar"><span class="icono icono--papelera" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/co.svg" alt="Bandera de Colombia" loading="lazy">
+            <button class="boton-icono boton-icono--favorito es-activo boton-icono--sm" type="button" aria-pressed="true" aria-label="Quitar Colombia de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo">Colombia</h3>
+                <p class="tarjeta-pais__subtitulo">Bogotá · América</p>
+              </div>
+              <span class="insignia insignia--primario">En itinerario</span>
+            </div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--lluvia icono--sm" aria-hidden="true"></span> 14 °C · Lluvia ligera</li>
+              <li><span class="icono icono--calendario icono--sm" aria-hidden="true"></span> Guardado el 2 de sept</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar Colombia de favoritos" title="Eliminar"><span class="icono icono--papelera" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="lista-filas solo-movil mt-6">
+        <article class="fila-pais">
+          <div class="fila-pais__imagen"><img class="bandera bandera--lg" src="https://flagcdn.com/jp.svg" alt="Bandera de Japón" loading="lazy"></div>
+          <div class="fila-pais__cuerpo">
+            <div>
+              <h3 class="fila-pais__titulo"><a href="destino.html">Japón</a></h3>
+              <p class="tarjeta-pais__subtitulo">Tokio · Asia</p>
+              <div class="fila-pais__insignias">
+                <span class="insignia insignia--aviso"><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 18 °C</span>
+                <span class="insignia">125,8 M</span>
+              </div>
+            <p class="fila-pais__detalle">Guardado el 28 de sept</p>
+            </div>
+            <div class="fila-pais__accion"><button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar Japón de favoritos"><span class="icono icono--papelera" aria-hidden="true"></span></button></div>
+          </div>
+        </article>
+        <article class="fila-pais">
+          <div class="fila-pais__imagen"><img class="bandera bandera--lg" src="https://flagcdn.com/es.svg" alt="Bandera de España" loading="lazy"></div>
+          <div class="fila-pais__cuerpo">
+            <div>
+              <h3 class="fila-pais__titulo"><a href="destino.html">España</a></h3>
+              <p class="tarjeta-pais__subtitulo">Madrid · Europa</p>
+              <div class="fila-pais__insignias">
+                <span class="insignia insignia--aviso"><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 26 °C</span>
+                <span class="insignia">47,4 M</span>
+              </div>
+            <p class="fila-pais__detalle">Guardado el 21 de sept</p>
+            </div>
+            <div class="fila-pais__accion"><button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar España de favoritos"><span class="icono icono--papelera" aria-hidden="true"></span></button></div>
+          </div>
+        </article>
+        <article class="fila-pais">
+          <div class="fila-pais__imagen"><img class="bandera bandera--lg" src="https://flagcdn.com/it.svg" alt="Bandera de Italia" loading="lazy"></div>
+          <div class="fila-pais__cuerpo">
+            <div>
+              <h3 class="fila-pais__titulo"><a href="destino.html">Italia</a></h3>
+              <p class="tarjeta-pais__subtitulo">Roma · Europa</p>
+              <div class="fila-pais__insignias">
+                <span class="insignia insignia--aviso"><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 22 °C</span>
+                <span class="insignia">59,6 M</span>
+              </div>
+            <p class="fila-pais__detalle">Guardado el 14 de sept</p>
+            </div>
+            <div class="fila-pais__accion"><button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar Italia de favoritos"><span class="icono icono--papelera" aria-hidden="true"></span></button></div>
+          </div>
+        </article>
+        <article class="fila-pais">
+          <div class="fila-pais__imagen"><img class="bandera bandera--lg" src="https://flagcdn.com/co.svg" alt="Bandera de Colombia" loading="lazy"></div>
+          <div class="fila-pais__cuerpo">
+            <div>
+              <h3 class="fila-pais__titulo"><a href="destino.html">Colombia</a></h3>
+              <p class="tarjeta-pais__subtitulo">Bogotá · América</p>
+              <div class="fila-pais__insignias">
+                <span class="insignia insignia--aviso"><span class="icono icono--lluvia icono--sm" aria-hidden="true"></span> 14 °C</span>
+                <span class="insignia">50,9 M</span>
+              </div>
+            <p class="fila-pais__detalle">Guardado el 2 de sept</p>
+            </div>
+            <div class="fila-pais__accion"><button class="boton-icono boton-icono--eliminar" type="button" aria-label="Eliminar Colombia de favoritos"><span class="icono icono--papelera" aria-hidden="true"></span></button></div>
+          </div>
+        </article>
+      </div>
+      <section class="mt-12" aria-labelledby="sugerencias">
+        <h2 class="antetitulo" id="sugerencias">Sugerencias para empezar</h2>
+        <ul class="sugerencias">
+          <li class="sugerencia">
+            <img class="bandera" src="https://flagcdn.com/jp.svg" alt="Bandera de Japón" loading="lazy">
+            <div class="sugerencia__texto">
+              <p>Japón</p>
+              <p>El destino más buscado</p>
+            </div>
+            <a class="boton-icono" href="#aviso-duplicado" aria-label="Agregar Japón a favoritos"><span class="icono icono--mas" aria-hidden="true"></span></a>
+          </li>
+          <li class="sugerencia">
+            <img class="bandera" src="https://flagcdn.com/es.svg" alt="Bandera de España" loading="lazy">
+            <div class="sugerencia__texto">
+              <p>España</p>
+              <p>Buen clima todo el año</p>
+            </div>
+            <a class="boton-icono" href="#aviso-duplicado" aria-label="Agregar España a favoritos"><span class="icono icono--mas" aria-hidden="true"></span></a>
+          </li>
+          <li class="sugerencia">
+            <img class="bandera" src="https://flagcdn.com/co.svg" alt="Bandera de Colombia" loading="lazy">
+            <div class="sugerencia__texto">
+              <p>Colombia</p>
+              <p>Cerca de ti</p>
+            </div>
+            <a class="boton-icono" href="#aviso-duplicado" aria-label="Agregar Colombia a favoritos"><span class="icono icono--mas" aria-hidden="true"></span></a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie-sitio pie-sitio--compacto">
+    <div class="contenedor">
+      <span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span>
+      <p>© 2026 easytravel · Tu viaje, en un solo lugar</p>
+    </div>
+  </footer>
+
+  <nav class="barra-pestanas" aria-label="Navegación móvil">
+    <ul>
+      <li><a href="index.html"><span class="icono icono--casa icono--lg" aria-hidden="true"></span> Inicio</a></li>
+      <li><a href="explorar.html"><span class="icono icono--globo icono--lg" aria-hidden="true"></span> Explorar</a></li>
+      <li><a href="favoritos.html" aria-current="page"><span class="icono icono--corazon icono--lg" aria-hidden="true"></span> Favoritos</a></li>
+      <li><a href="itinerario.html"><span class="icono icono--calendario-dias icono--lg" aria-hidden="true"></span> Itinerario</a></li>
+      <li><a href="acerca.html"><span class="icono icono--info icono--lg" aria-hidden="true"></span> Acerca</a></li>
+    </ul>
+  </nav>
+
+  <div class="modal" id="confirmar-vaciar" role="dialog" aria-modal="true" aria-labelledby="confirmar-titulo">
+    <div class="modal__dialogo modal__dialogo--sm">
+      <div class="modal__cabecera">
+        <h2 id="confirmar-titulo">¿Vaciar favoritos?</h2>
+        <a class="boton-icono boton-icono--sm" href="#" aria-label="Cerrar"><span class="icono icono--cerrar" aria-hidden="true"></span></a>
+      </div>
+      <div class="modal__cuerpo">
+        <p class="texto-suave">Se eliminarán los 4 destinos guardados. Esta acción no se puede deshacer.</p>
+      </div>
+      <div class="modal__pie modal__pie--final">
+        <div class="acciones">
+          <a class="boton boton--sm boton--contorno" href="#">Cancelar</a>
+          <a class="boton boton--sm boton--peligro" href="favoritos-vacio.html">Vaciar favoritos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

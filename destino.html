@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Datos de España: capital, idiomas, moneda, clima y pronóstico.">
+  <meta name="theme-color" content="#2f6bc4">
+  <title>España · easytravel</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera-sitio">
+    <div class="contenedor cabecera-sitio__interior">
+      <a href="index.html" aria-label="easytravel, ir al inicio"><span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span></a>
+
+      <nav class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="explorar.html">Explorar destinos</a></li>
+          <li><a href="favoritos.html">Favoritos</a></li>
+          <li><a href="itinerario.html">Mi itinerario</a></li>
+          <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+      </nav>
+
+      <div class="cabecera-sitio__acciones">
+        <a class="boton-icono" href="favoritos.html" aria-label="Favoritos, 4 guardados" title="Favoritos"><span class="icono icono--corazon" aria-hidden="true"></span><span class="contador">4</span></a>
+        <a class="boton boton--sm boton--primario cabecera-sitio__llamado" href="itinerario.html#nuevo-plan">Crear itinerario</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <section class="portada-destino">
+      <div class="contenedor">
+        <nav class="migas" aria-label="Ruta de navegación">
+          <ol>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="explorar.html">Explorar destinos</a></li>
+            <li aria-current="page">España</li>
+          </ol>
+        </nav>
+        <div class="portada-destino__principal">
+          <div class="portada-destino__titulo">
+            <img class="bandera bandera--xl" src="https://flagcdn.com/es.svg" alt="Bandera de España" loading="lazy">
+            <div>
+              <h1>España</h1>
+              <div class="portada-destino__etiquetas">
+                <span class="insignia insignia--primario">Europa</span>
+                <span class="insignia">Europa del Sur</span>
+                <span class="insignia">Capital: Madrid</span>
+              </div>
+            </div>
+          </div>
+          <div class="portada-destino__acciones">
+            <button class="boton boton--contorno" type="button" aria-pressed="true">
+              <span class="icono icono--corazon-lleno" aria-hidden="true"></span>
+              <span class="solo-movil">Guardado</span><span class="solo-escritorio">Quitar de favoritos</span>
+            </button>
+            <a class="boton boton--primario" href="#anadir-plan">
+              <span class="icono icono--mas" aria-hidden="true"></span>
+              <span class="solo-movil">Al itinerario</span><span class="solo-escritorio">Agregar al itinerario</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="contenedor estructura-destino">
+
+      <div class="estructura-destino__principal">
+        <section class="panel" aria-labelledby="info-general">
+          <div class="panel__cabecera">
+            <h2 class="panel__titulo" id="info-general">Información general</h2>
+          </div>
+          <dl class="datos datos--4">
+            <div>
+              <dt>Capital</dt>
+              <dd>Madrid</dd>
+            </div>
+            <div>
+              <dt>Región</dt>
+              <dd>Europa</dd>
+            </div>
+            <div>
+              <dt>Subregión</dt>
+              <dd>Europa del Sur</dd>
+            </div>
+            <div>
+              <dt>Población</dt>
+              <dd>47 351 567</dd>
+            </div>
+            <div>
+              <dt>Idiomas</dt>
+              <dd>Español</dd>
+            </div>
+            <div>
+              <dt>Moneda</dt>
+              <dd>Euro (€)</dd>
+            </div>
+            <div>
+              <dt>Zona horaria</dt>
+              <dd>UTC+01:00</dd>
+            </div>
+            <div>
+              <dt>Coordenadas</dt>
+              <dd>40.42, -3.70</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel" aria-labelledby="ubicacion">
+          <div class="panel__cabecera">
+            <h2 class="panel__titulo" id="ubicacion">Ubicación geográfica</h2>
+          </div>
+          <div class="mapa" role="img" aria-label="Mapa de Madrid">
+            <div class="mapa__punto">
+              <span class="mapa__marcador"><span class="icono icono--ubicacion icono--lg" aria-hidden="true"></span></span>
+              <span class="mapa__etiqueta">Madrid · 40.4168, -3.7038</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="sobre">
+          <div class="panel__cabecera">
+            <h2 class="panel__titulo" id="sobre">Sobre este destino</h2>
+          </div>
+          <p class="descripcion">España es el segundo país más visitado del mundo. Combina ciudades históricas, costa mediterránea y una gastronomía reconocida. La mejor época para viajar es primavera y otoño, cuando las temperaturas se mantienen entre 18 °C y 26 °C.</p>
+          <ul class="lista-etiquetas">
+            <li><span class="insignia">Cultura</span></li>
+            <li><span class="insignia">Gastronomía</span></li>
+            <li><span class="insignia">Playa</span></li>
+            <li><span class="insignia">Caminable</span></li>
+            <li><span class="insignia">Buen transporte</span></li>
+          </ul>
+        </section>
+
+        <section class="panel" aria-labelledby="lugares">
+          <div class="panel__cabecera">
+            <h2 class="panel__titulo" id="lugares">Lugares de interés</h2>
+          </div>
+          <ul class="lugares">
+            <li class="lugar">
+              <div class="lugar__imagen"></div>
+              <div class="lugar__cuerpo">
+                <p>Museo del Prado</p>
+                <p>Museo · Centro histórico</p>
+              </div>
+            </li>
+            <li class="lugar">
+              <div class="lugar__imagen"></div>
+              <div class="lugar__cuerpo">
+                <p>Parque del Retiro</p>
+                <p>Parque · Retiro</p>
+              </div>
+            </li>
+            <li class="lugar">
+              <div class="lugar__imagen"></div>
+              <div class="lugar__cuerpo">
+                <p>Plaza Mayor</p>
+                <p>Plaza · Centro</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="estructura-destino__lateral">
+        <section class="panel panel--superficie" aria-labelledby="clima-actual">
+          <h2 class="antetitulo antetitulo--aviso" id="clima-actual">Clima actual</h2>
+          <p class="clima-actual__lugar">Madrid, España</p>
+          <div class="clima-actual__temperatura">
+            <span class="icono icono--despejado icono--xl" aria-hidden="true"></span>
+            <p>26<sup>°C</sup></p>
+          </div>
+          <p class="clima-actual__descripcion">Despejado · sensación 27 °C</p>
+          <ul class="datos-clima">
+            <li><span class="icono icono--viento" aria-hidden="true"></span><strong>12 km/h</strong><span>Viento</span></li>
+            <li><span class="icono icono--lluvia" aria-hidden="true"></span><strong>10 %</strong><span>Lluvia</span></li>
+            <li><span class="icono icono--humedad" aria-hidden="true"></span><strong>38 %</strong><span>Humedad</span></li>
+          </ul>
+        </section>
+
+        <section class="panel" aria-labelledby="pronostico">
+          <div class="panel__cabecera">
+            <h2 class="panel__titulo" id="pronostico">Pronóstico 5 días</h2>
+            <span class="actualizado">Actualizado 10:24</span>
+          </div>
+          <ul class="pronostico">
+            <li class="es-hoy">
+              <span class="pronostico__corto">Lun</span>
+              <span class="icono icono--despejado" role="img" aria-label="Despejado"></span>
+              <span class="pronostico__dia">Lunes</span>
+              <span class="pronostico__hoy">Hoy</span>
+              <span class="pronostico__max">26°<span class="pronostico__min"> / 15°</span></span>
+            </li>
+            <li>
+              <span class="pronostico__corto">Mar</span>
+              <span class="icono icono--parcial-nublado" role="img" aria-label="Parcialmente nublado"></span>
+              <span class="pronostico__dia">Martes</span>
+              <span class="pronostico__max">24°<span class="pronostico__min"> / 13°</span></span>
+            </li>
+            <li>
+              <span class="pronostico__corto">Mié</span>
+              <span class="icono icono--parcial-nublado" role="img" aria-label="Parcialmente nublado"></span>
+              <span class="pronostico__dia">Miércoles</span>
+              <span class="pronostico__max">22°<span class="pronostico__min"> / 11°</span></span>
+            </li>
+            <li>
+              <span class="pronostico__corto">Jue</span>
+              <span class="icono icono--lluvia" role="img" aria-label="Lluvia ligera"></span>
+              <span class="pronostico__dia">Jueves</span>
+              <span class="pronostico__max">19°<span class="pronostico__min"> / 8°</span></span>
+            </li>
+            <li>
+              <span class="pronostico__corto">Vie</span>
+              <span class="icono icono--parcial-nublado" role="img" aria-label="Parcialmente nublado"></span>
+              <span class="pronostico__dia">Viernes</span>
+              <span class="pronostico__max">23°<span class="pronostico__min"> / 12°</span></span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="panel" id="anadir-plan" aria-labelledby="anadir-plan-titulo">
+          <div class="panel__cabecera">
+            <h2 class="panel__titulo" id="anadir-plan-titulo">Añadir a un plan</h2>
+          </div>
+          <form class="formulario-apilado" action="itinerario.html">
+            <div class="campo">
+              <label for="plan-viaje">Itinerario</label>
+              <select class="selector" id="plan-viaje">
+                <option>Mi viaje a España</option>
+                <option>Japón en primavera</option>
+                <option>Eje cafetero</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="plan-dia">Día</label>
+              <select class="selector" id="plan-dia">
+                <option>Día 1 · 14 de dic</option>
+                <option>Día 2 · 15 de dic</option>
+                <option>Día 3 · 16 de dic</option>
+              </select>
+            </div>
+            <button class="boton boton--primario boton--bloque" type="submit">Agregar destino al plan</button>
+            <p class="nota-exito"><span class="icono icono--visto icono--sm" aria-hidden="true"></span> Se guardará en este navegador</p>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie-sitio pie-sitio--compacto">
+    <div class="contenedor">
+      <span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span>
+      <p>© 2026 easytravel · Tu viaje, en un solo lugar</p>
+    </div>
+  </footer>
+
+  <nav class="barra-pestanas" aria-label="Navegación móvil">
+    <ul>
+      <li><a href="index.html"><span class="icono icono--casa icono--lg" aria-hidden="true"></span> Inicio</a></li>
+      <li><a href="explorar.html"><span class="icono icono--globo icono--lg" aria-hidden="true"></span> Explorar</a></li>
+      <li><a href="favoritos.html"><span class="icono icono--corazon icono--lg" aria-hidden="true"></span> Favoritos</a></li>
+      <li><a href="itinerario.html"><span class="icono icono--calendario-dias icono--lg" aria-hidden="true"></span> Itinerario</a></li>
+      <li><a href="acerca.html"><span class="icono icono--info icono--lg" aria-hidden="true"></span> Acerca</a></li>
+    </ul>
+  </nav>
+</body>
+</html>

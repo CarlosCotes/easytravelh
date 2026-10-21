@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('../fonts/outfit.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  --fondo: #ffffff;
+  --superficie: #f6f8fb;
+  --relleno: #dce0e8;
+  --borde: #e5e7eb;
+  --texto: #1b1f2a;
+  --texto-suave: #6b7280;
+  --primario: #2f6bc4;
+  --sobre-primario: #ffffff;
+  --primario-suave: #ecf3fc;
+  --peligro: #d23c3c;
+  --peligro-suave: #fcf4f4;
+  --aviso: #9a6700;
+  --aviso-suave: #fdf3dc;
+  --exito: #15803d;
+  --exito-suave: #e8f6ed;
+  --favorito: #d23c3c;
+
+  --fuente-titulos: 'Outfit', sans-serif;
+  --fuente-texto: 'Inter', system-ui, sans-serif;
+
+  --ancho-contenedor: 70rem;
+  --alto-encabezado: 4rem;
+  --alto-barra-movil: 4rem;
+  --radio-sm: 0.375rem;
+  --radio: 0.5rem;
+  --radio-lg: 0.75rem;
+  --radio-xl: 1rem;
+  --sombra: 0 4px 14px rgb(15 23 42 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --fondo: #091524;
+    --superficie: #12253d;
+    --relleno: #1d3655;
+    --borde: #22395a;
+    --texto: #f2f6fb;
+    --texto-suave: #a9bad0;
+    --primario: #6ba4f0;
+    --sobre-primario: #091524;
+    --primario-suave: #16304f;
+    --peligro: #ff7a70;
+    --peligro-suave: #3a1d22;
+    --aviso: #f5b54b;
+    --aviso-suave: #3a2d14;
+    --exito: #5fd08f;
+    --exito-suave: #15352a;
+    --favorito: #ff8fa3;
+    --sombra: 0 4px 14px rgb(0 0 0 / 0.35);
+  }
+}

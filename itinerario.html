@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Organiza tu viaje día por día.">
+  <meta name="theme-color" content="#2f6bc4">
+  <title>Mi itinerario · easytravel</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera-sitio">
+    <div class="contenedor cabecera-sitio__interior">
+      <a href="index.html" aria-label="easytravel, ir al inicio"><span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span></a>
+
+      <nav class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="explorar.html">Explorar destinos</a></li>
+          <li><a href="favoritos.html">Favoritos</a></li>
+          <li><a href="itinerario.html" aria-current="page">Mi itinerario</a></li>
+          <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+      </nav>
+
+      <div class="cabecera-sitio__acciones">
+        <a class="boton-icono" href="favoritos.html" aria-label="Favoritos, 4 guardados" title="Favoritos"><span class="icono icono--corazon" aria-hidden="true"></span><span class="contador">4</span></a>
+        <a class="boton boton--sm boton--primario cabecera-sitio__llamado" href="itinerario.html#nuevo-plan"><span class="icono icono--mas" aria-hidden="true"></span> Nuevo plan</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor pagina">
+      <div class="cabecera-pagina">
+        <div>
+          <nav class="migas" aria-label="Ruta de navegación">
+            <ol>
+              <li><a href="index.html">Inicio</a></li>
+              <li aria-current="page">Mi itinerario</li>
+            </ol>
+          </nav>
+          <h1>Mi itinerario</h1>
+          <p class="cabecera-pagina__subtitulo">Organiza tu viaje día por día.</p>
+        </div>
+      </div>
+
+      <div class="estructura-itinerario">
+
+        <aside class="estructura-itinerario__planes" aria-label="Mis planes">
+          <section class="panel">
+            <div class="panel__cabecera">
+              <h2 class="panel__titulo">Mis planes</h2>
+              <span class="insignia">3</span>
+            </div>
+            <ul class="lista-viajes">
+              <li>
+                <a href="itinerario.html" aria-current="true">
+                  <img class="bandera" src="https://flagcdn.com/es.svg" alt="Bandera de España" loading="lazy">
+                  <span>
+                    <span class="lista-viajes__nombre">Mi viaje a España</span>
+                    <span class="lista-viajes__detalle">14 – 20 dic · 3 días</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="itinerario.html">
+                  <img class="bandera" src="https://flagcdn.com/jp.svg" alt="Bandera de Japón" loading="lazy">
+                  <span>
+                    <span class="lista-viajes__nombre">Japón en primavera</span>
+                    <span class="lista-viajes__detalle">20 – 30 mar · borrador</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="itinerario.html">
+                  <img class="bandera" src="https://flagcdn.com/co.svg" alt="Bandera de Colombia" loading="lazy">
+                  <span>
+                    <span class="lista-viajes__nombre">Eje cafetero</span>
+                    <span class="lista-viajes__detalle">Sin fechas</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <a class="boton boton--sm boton--contorno boton--bloque mt-4" href="#nuevo-plan"><span class="icono icono--mas" aria-hidden="true"></span> Crear plan</a>
+          </section>
+
+          <section class="panel panel--superficie autoguardado">
+            <h2 class="antetitulo">Guardado automático</h2>
+            <p>Tus planes se guardan en este navegador. No necesitas crear una cuenta.</p>
+            <span class="insignia insignia--exito"><span class="icono icono--visto icono--sm" aria-hidden="true"></span> Guardado 10:26</span>
+          </section>
+        </aside>
+
+        <div class="estructura-itinerario__principal">
+          <section class="panel resumen-viaje" aria-labelledby="viaje-titulo">
+            <div class="resumen-viaje__imagen"></div>
+            <div class="resumen-viaje__cuerpo">
+              <div class="resumen-viaje__cabecera">
+                <div class="resumen-viaje__nombre">
+                  <h2 id="viaje-titulo">Mi viaje a España</h2>
+                  <span class="insignia insignia--primario">Activo</span>
+                </div>
+                <div class="resumen-viaje__botones">
+                  <a class="boton boton--sm boton--contorno" href="#nuevo-plan"><span class="icono icono--lapiz icono--sm" aria-hidden="true"></span> Editar</a>
+                  <button class="boton boton--sm boton--contorno" type="button"><span class="icono icono--descargar icono--sm" aria-hidden="true"></span> Exportar</button>
+                  <button class="boton boton--sm boton--peligro" type="button">Eliminar</button>
+                </div>
+              </div>
+              <ul class="datos-viaje">
+                <li><span class="icono icono--ubicacion" aria-hidden="true"></span> Madrid, España</li>
+                <li><span class="icono icono--calendario" aria-hidden="true"></span> 14 de dic – 20 de dic de 2026</li>
+                <li><span class="icono icono--personas" aria-hidden="true"></span> 2 viajeros</li>
+                <li><span class="icono icono--billetera" aria-hidden="true"></span> COP 4.500.000</li>
+              </ul>
+              <dl class="indicadores">
+                <div><dt>Días planeados</dt><dd>3</dd></div>
+                <div><dt>Actividades</dt><dd>7</dd></div>
+                <div><dt>Clima en destino</dt><dd>26 °C</dd></div>
+                <div><dt>Faltan para el viaje</dt><dd>55 d</dd></div>
+              </dl>
+            </div>
+          </section>
+
+          <div class="dias">
+            <input class="dia-radio" type="radio" name="dia" id="dia-1" checked>
+            <input class="dia-radio" type="radio" name="dia" id="dia-2">
+            <input class="dia-radio" type="radio" name="dia" id="dia-3">
+            <div class="pestanas-dia" role="tablist" aria-label="Días del viaje">
+              <label for="dia-1">Día 1</label>
+              <label for="dia-2">Día 2</label>
+              <label for="dia-3">Día 3</label>
+              <a href="itinerario.html" aria-label="Agregar un día"><span class="icono icono--mas" aria-hidden="true"></span></a>
+            </div>
+            <section class="panel dia dia--1" aria-labelledby="dia-1-titulo">
+              <header class="dia__cabecera">
+                <span class="numero numero--lg">1</span>
+                <div class="dia__titulo">
+                  <h3 id="dia-1-titulo">Día 1 · Lunes 14 de diciembre</h3>
+                  <p>Llegada y centro histórico</p>
+                </div>
+                <span class="insignia insignia--aviso"><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 26 °C</span>
+                <button class="boton-icono boton-icono--sm boton-icono--eliminar" type="button" aria-label="Eliminar día 1"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+              </header>
+              <ul class="actividades">
+                <li class="actividad">
+                  <span class="icono icono--traslado" aria-hidden="true"></span>
+                  <div class="actividad__texto">
+                    <p>Llegada a Madrid</p>
+                    <p>08:30 · Aeropuerto Barajas</p>
+                  </div>
+                  <span class="insignia">Traslado</span>
+                  <button class="actividad__eliminar" type="button" aria-label="Eliminar Llegada a Madrid"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+                </li>
+                <li class="actividad">
+                  <span class="icono icono--cultura" aria-hidden="true"></span>
+                  <div class="actividad__texto">
+                    <p>Visitar el centro histórico</p>
+                    <p>11:00 · Plaza Mayor y alrededores</p>
+                  </div>
+                  <span class="insignia insignia--primario">Cultura</span>
+                  <button class="actividad__eliminar" type="button" aria-label="Eliminar Visitar el centro histórico"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+                </li>
+                <li class="actividad">
+                  <span class="icono icono--comida" aria-hidden="true"></span>
+                  <div class="actividad__texto">
+                    <p>Cena en el Mercado de San Miguel</p>
+                    <p>20:00 · Gastronomía</p>
+                  </div>
+                  <span class="insignia insignia--aviso">Comida</span>
+                  <button class="actividad__eliminar" type="button" aria-label="Eliminar Cena en el Mercado de San Miguel"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+                </li>
+              </ul>
+              <form class="agregar-actividad" action="itinerario.html">
+                <label class="solo-lector" for="actividad-1">Nueva actividad para el día 1</label>
+                <input class="entrada" id="actividad-1" type="text" placeholder="Agregar actividad al día 1…">
+                <button class="boton boton--sm boton--contorno" type="submit">Agregar</button>
+              </form>
+            </section>
+            <section class="panel dia dia--2" aria-labelledby="dia-2-titulo">
+              <header class="dia__cabecera">
+                <span class="numero numero--lg">2</span>
+                <div class="dia__titulo">
+                  <h3 id="dia-2-titulo">Día 2 · Martes 15 de diciembre</h3>
+                  <p>Museos y parques</p>
+                </div>
+                <span class="insignia insignia--aviso"><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 24 °C</span>
+                <button class="boton-icono boton-icono--sm boton-icono--eliminar" type="button" aria-label="Eliminar día 2"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+              </header>
+              <ul class="actividades">
+                <li class="actividad">
+                  <span class="icono icono--cultura" aria-hidden="true"></span>
+                  <div class="actividad__texto">
+                    <p>Museo del Prado</p>
+                    <p>10:00 · Entrada anticipada</p>
+                  </div>
+                  <span class="insignia insignia--primario">Cultura</span>
+                  <button class="actividad__eliminar" type="button" aria-label="Eliminar Museo del Prado"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+                </li>
+                <li class="actividad">
+                  <span class="icono icono--aire-libre" aria-hidden="true"></span>
+                  <div class="actividad__texto">
+                    <p>Parque del Retiro</p>
+                    <p>16:00 · Caminata y bote</p>
+                  </div>
+                  <span class="insignia insignia--exito">Aire libre</span>
+                  <button class="actividad__eliminar" type="button" aria-label="Eliminar Parque del Retiro"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+                </li>
+              </ul>
+              <form class="agregar-actividad" action="itinerario.html">
+                <label class="solo-lector" for="actividad-2">Nueva actividad para el día 2</label>
+                <input class="entrada" id="actividad-2" type="text" placeholder="Agregar actividad al día 2…">
+                <button class="boton boton--sm boton--contorno" type="submit">Agregar</button>
+              </form>
+            </section>
+            <section class="panel dia dia--3" aria-labelledby="dia-3-titulo">
+              <header class="dia__cabecera">
+                <span class="numero numero--lg">3</span>
+                <div class="dia__titulo">
+                  <h3 id="dia-3-titulo">Día 3 · Miércoles 16 de diciembre</h3>
+                  <p>Escapada a otra ciudad</p>
+                </div>
+                <span class="insignia insignia--aviso"><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 22 °C</span>
+                <button class="boton-icono boton-icono--sm boton-icono--eliminar" type="button" aria-label="Eliminar día 3"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+              </header>
+              <ul class="actividades">
+                <li class="actividad">
+                  <span class="icono icono--traslado" aria-hidden="true"></span>
+                  <div class="actividad__texto">
+                    <p>Tren a Toledo</p>
+                    <p>09:15 · 33 min desde Atocha</p>
+                  </div>
+                  <span class="insignia">Traslado</span>
+                  <button class="actividad__eliminar" type="button" aria-label="Eliminar Tren a Toledo"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+                </li>
+                <li class="actividad">
+                  <span class="icono icono--cultura" aria-hidden="true"></span>
+                  <div class="actividad__texto">
+                    <p>Catedral de Toledo</p>
+                    <p>11:30 · Visita guiada</p>
+                  </div>
+                  <span class="insignia insignia--primario">Cultura</span>
+                  <button class="actividad__eliminar" type="button" aria-label="Eliminar Catedral de Toledo"><span class="icono icono--papelera icono--sm" aria-hidden="true"></span></button>
+                </li>
+              </ul>
+              <form class="agregar-actividad" action="itinerario.html">
+                <label class="solo-lector" for="actividad-3">Nueva actividad para el día 3</label>
+                <input class="entrada" id="actividad-3" type="text" placeholder="Agregar actividad al día 3…">
+                <button class="boton boton--sm boton--contorno" type="submit">Agregar</button>
+              </form>
+            </section>
+          </div>
+
+          <a class="agregar-dia" href="itinerario.html"><span class="icono icono--mas" aria-hidden="true"></span> Agregar un día más</a>
+        </div>
+
+        <aside class="estructura-itinerario__lateral" aria-label="Resumen del plan">
+          <section class="panel">
+            <div class="panel__cabecera">
+              <h2 class="panel__titulo">Resumen del plan</h2>
+            </div>
+            <dl class="resumen">
+              <div><dt>Destino</dt><dd><img class="bandera bandera--sm" src="https://flagcdn.com/es.svg" alt="Bandera de España" loading="lazy"> España</dd></div>
+              <div><dt>Inicio</dt><dd>14 de dic de 2026</dd></div>
+              <div><dt>Fin</dt><dd>20 de dic de 2026</dd></div>
+              <div><dt>Duración</dt><dd>6 noches</dd></div>
+              <div><dt>Viajeros</dt><dd>2</dd></div>
+              <div class="resumen__total"><dt>Presupuesto</dt><dd>$ 4.500.000</dd></div>
+            </dl>
+          </section>
+
+          <section class="panel panel--superficie" aria-labelledby="clima-viaje">
+            <div class="panel__cabecera">
+              <h2 class="antetitulo antetitulo--aviso" id="clima-viaje">Clima del viaje</h2>
+            </div>
+            <ul class="clima-viaje">
+              <li><span class="icono icono--despejado" aria-hidden="true"></span><p>26°</p><p>Lun</p></li>
+              <li><span class="icono icono--parcial-nublado" aria-hidden="true"></span><p>24°</p><p>Mar</p></li>
+              <li><span class="icono icono--parcial-nublado" aria-hidden="true"></span><p>22°</p><p>Mié</p></li>
+            </ul>
+            <p class="nota-clima-viaje">Buen clima para actividades al aire libre. El jueves hay 60 % de probabilidad de lluvia.</p>
+          </section>
+
+          <section class="panel" aria-labelledby="notas">
+            <div class="panel__cabecera">
+              <h2 class="panel__titulo" id="notas">Notas</h2>
+            </div>
+            <label class="solo-lector" for="viaje-notas">Notas del viaje</label>
+            <textarea class="area-texto" id="viaje-notas" rows="4">Reservar entradas del Prado con anticipación. Confirmar hotel en Gran Vía.</textarea>
+          </section>
+
+          <button class="boton boton--primario boton--bloque" type="button">Guardar cambios</button>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie-sitio pie-sitio--compacto">
+    <div class="contenedor">
+      <span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span>
+      <p>© 2026 easytravel · Tu viaje, en un solo lugar</p>
+    </div>
+  </footer>
+
+  <nav class="barra-pestanas" aria-label="Navegación móvil">
+    <ul>
+      <li><a href="index.html"><span class="icono icono--casa icono--lg" aria-hidden="true"></span> Inicio</a></li>
+      <li><a href="explorar.html"><span class="icono icono--globo icono--lg" aria-hidden="true"></span> Explorar</a></li>
+      <li><a href="favoritos.html"><span class="icono icono--corazon icono--lg" aria-hidden="true"></span> Favoritos</a></li>
+      <li><a href="itinerario.html" aria-current="page"><span class="icono icono--calendario-dias icono--lg" aria-hidden="true"></span> Itinerario</a></li>
+      <li><a href="acerca.html"><span class="icono icono--info icono--lg" aria-hidden="true"></span> Acerca</a></li>
+    </ul>
+  </nav>
+
+  <div class="modal" id="nuevo-plan" role="dialog" aria-modal="true" aria-labelledby="form-titulo">
+    <div class="modal__dialogo">
+      <div class="modal__cabecera">
+        <div>
+          <p class="antetitulo">Nuevo plan de viaje</p>
+          <h2 id="form-titulo">Cuéntanos de tu viaje</h2>
+          <p class="texto-suave texto-sm">Los campos marcados con * son obligatorios.</p>
+        </div>
+        <a class="boton-icono boton-icono--sm" href="#" aria-label="Cerrar"><span class="icono icono--cerrar" aria-hidden="true"></span></a>
+      </div>
+
+      <div class="modal__cuerpo">
+        <form class="formulario-viaje" id="formulario-viaje" action="itinerario.html">
+          <div class="campo">
+            <label for="viaje-nombre">Nombre del viaje <span class="obligatorio">*</span></label>
+            <input class="entrada es-valido" id="viaje-nombre" type="text" value="Mi viaje a España" required minlength="3" maxlength="60">
+            <p class="campo__exito"><span class="icono icono--visto icono--sm" aria-hidden="true"></span> Nombre disponible</p>
+          </div>
+
+          <div class="campo">
+            <label for="viaje-destino">Destino <span class="obligatorio">*</span></label>
+            <select class="selector" id="viaje-destino" required>
+              <option value="">Elige un país</option>
+              <option value="DEU">Alemania — Berlín</option>
+              <option value="ARG">Argentina — Buenos Aires</option>
+              <option value="AUS">Australia — Canberra</option>
+              <option value="BRA">Brasil — Brasilia</option>
+              <option value="CAN">Canadá — Ottawa</option>
+              <option value="CHL">Chile — Santiago</option>
+              <option value="COL">Colombia — Bogotá</option>
+              <option value="EGY">Egipto — El Cairo</option>
+              <option value="ESP" selected>España — Madrid</option>
+              <option value="FRA">Francia — París</option>
+              <option value="GRC">Grecia — Atenas</option>
+              <option value="IND">India — Nueva Delhi</option>
+              <option value="ISL">Islandia — Reikiavik</option>
+              <option value="ITA">Italia — Roma</option>
+              <option value="JPN">Japón — Tokio</option>
+              <option value="KEN">Kenia — Nairobi</option>
+              <option value="MAR">Marruecos — Rabat</option>
+              <option value="MEX">México — Ciudad de México</option>
+              <option value="NZL">Nueva Zelanda — Wellington</option>
+              <option value="PER">Perú — Lima</option>
+              <option value="PRT">Portugal — Lisboa</option>
+              <option value="ZAF">Sudáfrica — Pretoria</option>
+              <option value="THA">Tailandia — Bangkok</option>
+              <option value="VNM">Vietnam — Hanói</option>
+            </select>
+          </div>
+
+          <div class="formulario-viaje__fila">
+            <div class="campo">
+              <label for="viaje-inicio">Fecha de inicio <span class="obligatorio">*</span></label>
+              <input class="entrada" id="viaje-inicio" type="date" value="2026-12-14" required>
+            </div>
+            <div class="campo">
+              <label for="viaje-fin">Fecha de finalización <span class="obligatorio">*</span></label>
+              <input class="entrada con-error" id="viaje-fin" type="date" value="2026-12-10" required aria-invalid="true" aria-describedby="viaje-fin-error">
+              <p class="campo__error" id="viaje-fin-error"><span class="icono icono--aviso icono--sm" aria-hidden="true"></span> La fecha de fin debe ser posterior a la de inicio</p>
+            </div>
+          </div>
+
+          <div class="formulario-viaje__fila">
+            <div class="campo">
+              <label for="viaje-viajeros">Número de viajeros <span class="obligatorio">*</span></label>
+              <div class="grupo-entrada">
+                <input class="entrada con-foco" id="viaje-viajeros" type="number" value="2" min="1" max="20" required>
+                <div class="grupo-entrada__acciones">
+                  <button class="boton-contador" type="button" aria-label="Quitar un viajero"><span class="icono icono--menos icono--sm" aria-hidden="true"></span></button>
+                  <button class="boton-contador" type="button" aria-label="Agregar un viajero"><span class="icono icono--mas icono--sm" aria-hidden="true"></span></button>
+                </div>
+              </div>
+              <p class="campo__ayuda">Entre 1 y 20 personas.</p>
+            </div>
+            <div class="campo">
+              <label for="viaje-presupuesto">Presupuesto estimado</label>
+              <div class="grupo-entrada">
+                <span class="grupo-entrada__prefijo">COP</span>
+                <input class="entrada entrada--con-prefijo" id="viaje-presupuesto" type="text" inputmode="numeric" pattern="[0-9]*" value="4500000">
+              </div>
+              <p class="campo__ayuda">Opcional. Solo números.</p>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="viaje-comentarios">Comentarios</label>
+            <textarea class="area-texto" id="viaje-comentarios" rows="3" maxlength="280">Reservar entradas del Museo del Prado con anticipación. Buscar hotel cerca de Gran Vía.</textarea>
+            <p class="campo__ayuda"><span>Máximo 280 caracteres.</span><span>87 / 280</span></p>
+          </div>
+
+          <div class="errores-formulario" role="alert">
+            <span class="icono icono--aviso icono--lg" aria-hidden="true"></span>
+            <div>
+              <p>Revisa 1 campo antes de continuar</p>
+              <ul>
+                <li>Fecha de finalización: debe ser posterior a la fecha de inicio.</li>
+              </ul>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal__pie">
+        <p class="texto-suave texto-xs">Se guardará en este navegador</p>
+        <div class="acciones">
+          <a class="boton boton--fantasma" href="#">Cancelar</a>
+          <button class="boton boton--primario" type="submit" form="formulario-viaje" disabled>Crear plan de viaje</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

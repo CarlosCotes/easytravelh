@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Busca países por nombre o región y abre su ficha con datos y clima.">
+  <meta name="theme-color" content="#2f6bc4">
+  <title>Explorar destinos · easytravel</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a class="saltar-contenido" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera-sitio">
+    <div class="contenedor cabecera-sitio__interior">
+      <a href="index.html" aria-label="easytravel, ir al inicio"><span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span></a>
+
+      <nav class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="explorar.html" aria-current="page">Explorar destinos</a></li>
+          <li><a href="favoritos.html">Favoritos</a></li>
+          <li><a href="itinerario.html">Mi itinerario</a></li>
+          <li><a href="acerca.html">Acerca de</a></li>
+        </ul>
+      </nav>
+
+      <div class="cabecera-sitio__acciones">
+        <a class="boton-icono" href="favoritos.html" aria-label="Favoritos, 4 guardados" title="Favoritos"><span class="icono icono--corazon" aria-hidden="true"></span><span class="contador">4</span></a>
+        <a class="boton boton--sm boton--primario cabecera-sitio__llamado" href="itinerario.html#nuevo-plan">Crear itinerario</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <div class="contenedor pagina">
+      <div class="cabecera-pagina">
+        <div>
+          <nav class="migas" aria-label="Ruta de navegación">
+            <ol>
+              <li><a href="index.html">Inicio</a></li>
+              <li aria-current="page">Explorar destinos</li>
+            </ol>
+          </nav>
+          <h1>Explorar destinos</h1>
+          <p class="cabecera-pagina__subtitulo">Busca un país, filtra por región y abre su ficha para ver el clima.</p>
+        </div>
+        <div class="cabecera-pagina__acciones">
+          <label class="solo-lector" for="orden">Ordenar destinos</label>
+          <select class="selector selector--compacto" id="orden">
+            <option>Ordenar: A–Z</option>
+            <option>Ordenar: Z–A</option>
+            <option>Ordenar: Población</option>
+          </select>
+          <div class="cambiar-vista" role="group" aria-label="Vista">
+            <a href="explorar.html" aria-current="true"><span class="icono icono--cuadricula" aria-hidden="true"></span> Tarjetas</a>
+            <a href="explorar.html"><span class="icono icono--lista" aria-hidden="true"></span> Lista</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="barra-busqueda mt-6" role="search" action="explorar.html">
+        <span class="icono icono--buscar" aria-hidden="true"></span>
+        <label class="solo-lector" for="busqueda-explorar">Nombre del país</label>
+        <input id="busqueda-explorar" name="q" type="search" placeholder="Escribe el nombre de un país…">
+        <button class="boton boton--sm boton--primario" type="submit">Buscar</button>
+      </form>
+
+      <div class="barra-herramientas">
+        <div class="filtros">
+          <a class="filtro es-activo" href="explorar.html" aria-current="true">Todas<span class="solo-escritorio"> las regiones</span></a>
+          <a class="filtro" href="explorar.html">África</a>
+          <a class="filtro" href="explorar.html">América</a>
+          <a class="filtro" href="explorar.html">Asia</a>
+          <a class="filtro" href="explorar.html">Europa</a>
+          <a class="filtro" href="explorar.html">Oceanía</a>
+          <a class="filtro" href="explorar.html">Antártida</a>
+        </div>
+        <p class="total-resultados"><strong>24</strong> destinos encontrados</p>
+      </div>
+
+      <div class="rejilla-tarjetas mt-6">
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/de.svg" alt="Bandera de Alemania" loading="lazy">
+            <button class="boton-icono boton-icono--favorito boton-icono--sm" type="button" aria-pressed="false" aria-label="Guardar Alemania en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">Alemania</a></h3>
+                <p class="tarjeta-pais__subtitulo">Berlín · Europa</p>
+              </div>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--nublado icono--sm" aria-hidden="true"></span> 12 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--nublado icono--sm" aria-hidden="true"></span> 12 °C · Nublado</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 83,2 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Alemán · EUR</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito" type="button" aria-pressed="false" aria-label="Guardar Alemania en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/ar.svg" alt="Bandera de Argentina" loading="lazy">
+            <button class="boton-icono boton-icono--favorito boton-icono--sm" type="button" aria-pressed="false" aria-label="Guardar Argentina en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">Argentina</a></h3>
+                <p class="tarjeta-pais__subtitulo">Buenos Aires · América</p>
+              </div>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 21 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 21 °C · Despejado</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 45,4 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Español · ARS</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito" type="button" aria-pressed="false" aria-label="Guardar Argentina en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/au.svg" alt="Bandera de Australia" loading="lazy">
+            <button class="boton-icono boton-icono--favorito boton-icono--sm" type="button" aria-pressed="false" aria-label="Guardar Australia en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">Australia</a></h3>
+                <p class="tarjeta-pais__subtitulo">Canberra · Oceanía</p>
+              </div>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 24 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 24 °C · Despejado</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 25,7 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Inglés · AUD</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito" type="button" aria-pressed="false" aria-label="Guardar Australia en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/br.svg" alt="Bandera de Brasil" loading="lazy">
+            <button class="boton-icono boton-icono--favorito boton-icono--sm" type="button" aria-pressed="false" aria-label="Guardar Brasil en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">Brasil</a></h3>
+                <p class="tarjeta-pais__subtitulo">Brasilia · América</p>
+              </div>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--tormenta icono--sm" aria-hidden="true"></span> 29 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--tormenta icono--sm" aria-hidden="true"></span> 29 °C · Tormentas</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 212,6 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Portugués · BRL</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito" type="button" aria-pressed="false" aria-label="Guardar Brasil en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/ca.svg" alt="Bandera de Canadá" loading="lazy">
+            <button class="boton-icono boton-icono--favorito boton-icono--sm" type="button" aria-pressed="false" aria-label="Guardar Canadá en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">Canadá</a></h3>
+                <p class="tarjeta-pais__subtitulo">Ottawa · América</p>
+              </div>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--nieve icono--sm" aria-hidden="true"></span> -2 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--nieve icono--sm" aria-hidden="true"></span> -2 °C · Nieve</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 38,0 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Inglés, Francés · CAD</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--contorno" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito" type="button" aria-pressed="false" aria-label="Guardar Canadá en favoritos"><span class="icono icono--corazon" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/co.svg" alt="Bandera de Colombia" loading="lazy">
+            <button class="boton-icono boton-icono--favorito es-activo boton-icono--sm" type="button" aria-pressed="true" aria-label="Quitar Colombia de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">Colombia</a></h3>
+                <p class="tarjeta-pais__subtitulo">Bogotá · América</p>
+              </div>
+              <span class="insignia insignia--primario">Favorito</span>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--lluvia icono--sm" aria-hidden="true"></span> 14 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--lluvia icono--sm" aria-hidden="true"></span> 14 °C · Lluvia ligera</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 50,9 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Español · COP</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--primario" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito es-activo" type="button" aria-pressed="true" aria-label="Quitar Colombia de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/es.svg" alt="Bandera de España" loading="lazy">
+            <button class="boton-icono boton-icono--favorito es-activo boton-icono--sm" type="button" aria-pressed="true" aria-label="Quitar España de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">España</a></h3>
+                <p class="tarjeta-pais__subtitulo">Madrid · Europa</p>
+              </div>
+              <span class="insignia insignia--primario">Favorito</span>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 26 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--despejado icono--sm" aria-hidden="true"></span> 26 °C · Despejado</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 47,4 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Español · EUR</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--primario" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito es-activo" type="button" aria-pressed="true" aria-label="Quitar España de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+        <article class="tarjeta-pais">
+          <div class="tarjeta-pais__imagen">
+            <img class="bandera bandera--lg" src="https://flagcdn.com/jp.svg" alt="Bandera de Japón" loading="lazy">
+            <button class="boton-icono boton-icono--favorito es-activo boton-icono--sm" type="button" aria-pressed="true" aria-label="Quitar Japón de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+          </div>
+          <div class="tarjeta-pais__cuerpo">
+            <div class="tarjeta-pais__cabecera">
+              <div>
+                <h3 class="tarjeta-pais__titulo"><a href="destino.html">Japón</a></h3>
+                <p class="tarjeta-pais__subtitulo">Tokio · Asia</p>
+              </div>
+              <span class="insignia insignia--primario">Favorito</span>
+            </div>
+            <div class="tarjeta-pais__clima"><span class="insignia insignia--aviso"><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 18 °C</span></div>
+            <ul class="tarjeta-pais__datos">
+              <li><span class="icono icono--parcial-nublado icono--sm" aria-hidden="true"></span> 18 °C · Parcialmente nublado</li>
+              <li><span class="icono icono--personas icono--sm" aria-hidden="true"></span> 125,8 M habitantes</li>
+              <li><span class="icono icono--mensaje icono--sm" aria-hidden="true"></span> Japonés · JPY</li>
+            </ul>
+            <div class="tarjeta-pais__acciones">
+              <a class="boton boton--sm boton--primario" href="destino.html">Ver detalles</a>
+              <button class="boton-icono boton-icono--favorito es-activo" type="button" aria-pressed="true" aria-label="Quitar Japón de favoritos"><span class="icono icono--corazon-lleno" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="paginacion">
+        <p>Mostrando 8 de 24 destinos</p>
+        <div class="progreso" role="progressbar" aria-label="Destinos mostrados" aria-valuemin="0" aria-valuemax="24" aria-valuenow="8">
+          <span style="width: 33%"></span>
+        </div>
+        <a class="boton boton--contorno" href="explorar.html">Cargar más destinos</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie-sitio pie-sitio--compacto">
+    <div class="contenedor">
+      <span class="logo"><img src="img/favicon.svg" alt=""><span><span class="logo__easy">easy</span><span class="logo__travel">travel</span></span></span>
+      <p>© 2026 easytravel · Tu viaje, en un solo lugar</p>
+    </div>
+  </footer>
+
+  <nav class="barra-pestanas" aria-label="Navegación móvil">
+    <ul>
+      <li><a href="index.html"><span class="icono icono--casa icono--lg" aria-hidden="true"></span> Inicio</a></li>
+      <li><a href="explorar.html" aria-current="page"><span class="icono icono--globo icono--lg" aria-hidden="true"></span> Explorar</a></li>
+      <li><a href="favoritos.html"><span class="icono icono--corazon icono--lg" aria-hidden="true"></span> Favoritos</a></li>
+      <li><a href="itinerario.html"><span class="icono icono--calendario-dias icono--lg" aria-hidden="true"></span> Itinerario</a></li>
+      <li><a href="acerca.html"><span class="icono icono--info icono--lg" aria-hidden="true"></span> Acerca</a></li>
+    </ul>
+  </nav>
+</body>
+</html>
