@@ -1,54 +1,43 @@
-# easytravel — versión HTML y CSS
+# easytravel · Planify
 
-> Tu viaje, en un solo lugar.
+Aplicación web frontend responsive para explorar países, consultar el clima de sus capitales, guardar destinos e idear itinerarios. Está construida con HTML, CSS y JavaScript nativo; no requiere servidor de aplicación ni claves privadas.
 
-Maquetación completa de **easytravel** hecha solo con **HTML5 y CSS3**, sin frameworks ni JavaScript. Es la versión estática de las pantallas del prototipo en Figma: los datos son de ejemplo y las acciones (buscar, filtrar, guardar) todavía no tienen lógica.
+## Funciones
 
-## Páginas
+- Búsqueda por país o capital y filtro por región.
+- Ficha dinámica del país con bandera, capital, población, idiomas, moneda, zona horaria y coordenadas.
+- Clima actual y pronóstico de cinco días para las coordenadas de la capital.
+- Favoritos sin duplicados y exportación de la lista en JSON.
+- Creación y eliminación de itinerarios, con fechas, destino, viajeros, presupuesto, comentarios y actividades.
+- Persistencia local mediante `localStorage`.
+- Interfaz responsive para escritorio y móvil.
 
-| Archivo | Pantalla |
-| --- | --- |
-| `index.html` | Inicio: buscador, destinos destacados, cómo funciona y llamado a la acción |
-| `explorar.html` | Explorador con buscador, filtros por región, orden, tarjetas y paginación |
-| `destino.html` | Ficha de un destino (España): datos, mapa, clima actual, pronóstico y "Añadir a un plan" |
-| `favoritos.html` | Destinos guardados, filtros, aviso de duplicado (`#aviso-duplicado`) y confirmación para vaciar (`#confirmar-vaciar`) |
-| `favoritos-vacio.html` | Estado vacío de favoritos |
-| `itinerario.html` | Planes, días con actividades, resumen y formulario de planificación (`#nuevo-plan`) |
-| `acerca.html` | Qué es easytravel y qué se puede hacer |
-| `404.html` | Página no encontrada |
+## APIs
 
-## Técnicas de CSS usadas
+- **REST Countries v3.1**: países e información geográfica y cultural. `https://restcountries.com/v3.1`
+- **Open-Meteo Forecast**: clima actual y pronóstico. `https://api.open-meteo.com/v1/forecast`
+- **OpenStreetMap**: abre coordenadas de la capital en el mapa público. No se usa el servicio de teselas como API de datos.
 
-- **Variables CSS** (`css/tokens.css`) para colores, tipografía y medidas.
-- **Tema oscuro automático** con `@media (prefers-color-scheme: dark)`: cambia solo las variables.
-- **Mobile-first** con media queries en 640 px, 768 px y 1024 px. Diseño de 390 px a 1440 px.
-- **Flexbox y CSS Grid** para todos los layouts.
-- **Modales sin JavaScript** con la pseudo-clase `:target` (se abren con un enlace a `#id`).
-- **Pestañas de días en móvil** con radio buttons y `:checked`.
-- **Validación visual** con `:user-invalid` y atributos `required`, `min`, `max`, `pattern`.
-- **Íconos SVG** aplicados con `mask` para que tomen el color del texto.
-- **Accesibilidad**: HTML semántico, `aria-label`, `aria-current`, enlace "Saltar al contenido", foco visible y contraste AA.
+Las APIs se consumen directamente desde el navegador. Se necesita conexión a Internet para consultar y actualizar sus datos. Favoritos e itinerarios permanecen en el almacenamiento local del navegador y no se sincronizan entre equipos.
 
-## Estructura
+## Organización
 
-```
-easytravelHTML/
-├── index.html, explorar.html, destino.html, favoritos.html,
-│   favoritos-vacio.html, itinerario.html, acerca.html, 404.html
-├── css/
-│   ├── tokens.css      Fuentes y variables de diseño (tema claro y oscuro)
-│   ├── base.css        Reinicio, tipografía y utilidades
-│   ├── components.css  Botones, badges, tarjetas, formularios, alertas, modal
-│   ├── layout.css      Header, footer, barra de pestañas móvil, encabezado de página
-│   └── pages.css       Estilos propios de cada página
-├── fonts/              Outfit e Inter
-└── img/                Favicon e íconos SVG
-```
+- HTML en la raíz: una página por módulo.
+- `css/`: tokens, componentes, layouts, páginas y estilos de la aplicación.
+- `js/app.js`: estado, peticiones, renderizado y eventos.
+- `img/` y `fonts/`: recursos visuales locales.
+- `docs/`: manual del usuario y manual del programador.
 
-## Cómo verlo
+## Uso local
 
-Abre `index.html` en el navegador. No necesita instalar nada.
+Abre `index.html` o sirve la carpeta con cualquier servidor de archivos estáticos. No hay pasos de compilación ni dependencias de instalación.
 
-## Despliegue
+## Publicación
 
-Se puede publicar tal cual en Netlify (arrastrando la carpeta a [app.netlify.com/drop](https://app.netlify.com/drop) o conectando el repositorio) o en GitHub Pages. No requiere comando de build.
+El sitio puede alojarse en GitHub Pages, Netlify o un servicio estático equivalente. En GitHub Pages configura la fuente de publicación como **GitHub Actions**. El workflow `.github/workflows/pages.yml` publica la raíz del repositorio en cada cambio de la rama principal.
+
+## Guías
+
+- [Manual del usuario](docs/manual-usuario.md)
+- [Manual del programador](docs/manual-programador.md)
+
