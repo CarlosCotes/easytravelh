@@ -14,11 +14,13 @@ Aplicación web frontend responsive para explorar países, consultar el clima de
 
 ## APIs
 
-- **REST Countries v3.1**: países e información geográfica y cultural. `https://restcountries.com/v3.1`
-- **Open-Meteo Forecast**: clima actual y pronóstico. `https://api.open-meteo.com/v1/forecast`
-- **OpenStreetMap**: abre coordenadas de la capital en el mapa público. No se usa el servicio de teselas como API de datos.
+- **REST Countries**: países e información geográfica y cultural. `https://restcountries.com/v3.1`
+- **Nominatim / OpenStreetMap**: busca las coordenadas de la capital. `https://nominatim.openstreetmap.org/search`
+- **Open‑Meteo Forecast**: consulta el clima actual y el pronóstico. `https://api.open-meteo.com/v1/forecast`
 
-Las APIs se consumen directamente desde el navegador. Se necesita conexión a Internet para consultar y actualizar sus datos. Favoritos e itinerarios permanecen en el almacenamiento local del navegador y no se sincronizan entre equipos.
+La exploración consulta REST Countries y utiliza `data/countries.json` si el servicio no está disponible. En el detalle, Nominatim obtiene las coordenadas de la capital y Open‑Meteo consulta el clima. Favoritos e itinerarios permanecen en el almacenamiento local del navegador y no se sincronizan entre equipos.
+
+> **Estado de REST Countries (noviembre de 2026):** el endpoint v3.1 indicado en el planteamiento está retirado por su proveedor. La app conserva el catálogo local para que la exploración y las fichas sigan disponibles. La versión v5 actual requiere una clave; para conectarla en una web pública se necesita un servicio backend que resguarde esa clave.
 
 ## Organización
 
@@ -30,7 +32,7 @@ Las APIs se consumen directamente desde el navegador. Se necesita conexión a In
 
 ## Uso local
 
-Abre `index.html` o sirve la carpeta con cualquier servidor de archivos estáticos. No hay pasos de compilación ni dependencias de instalación.
+Sirve la carpeta raíz con cualquier servidor estático (por ejemplo, **Live Server** de VS Code). No hay pasos de compilación ni dependencias de instalación; el servidor local permite que funcione el catálogo de respaldo.
 
 ## Publicación
 
@@ -40,4 +42,3 @@ El sitio puede alojarse en GitHub Pages, Netlify o un servicio estático equival
 
 - [Manual del usuario](docs/manual-usuario.md)
 - [Manual del programador](docs/manual-programador.md)
-

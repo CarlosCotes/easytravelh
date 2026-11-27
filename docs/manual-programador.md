@@ -24,15 +24,17 @@ Aplicación de páginas estáticas con HTML semántico, CSS y un único módulo 
 
 El script usa el nombre del archivo actual para escoger el módulo (`explorar.html`, `destino.html`, etc.) y renderiza el contenido dentro de `main#contenido`. La cabecera, navegación y pie permanecen en el HTML de cada página. Las acciones comunes usan delegación de eventos, por lo que los botones continúan funcionando cuando se vuelve a dibujar una tarjeta.
 
-## 4. Integración REST Countries
+## 4. Integración REST Countries y Nominatim
 
-La constante `API` apunta a `https://restcountries.com/v3.1`. `loadCountries()` solicita los campos estrictamente necesarios y ordena el resultado por nombre. `renderCountries()` combina búsqueda de nombre/capital, filtro de región y, en favoritos, la lista local. `card()` transforma un país recibido en una tarjeta y forma la ruta a detalle usando `cca3`.
+La constante `API` apunta a `https://restcountries.com/v3.1`. `loadCountries()` solicita a `/all` los campos usados por las vistas y ordena el resultado por nombre. Si la consulta falla, carga `data/countries.json`. `renderCountries()` combina búsqueda de nombre/capital y filtro de región; en favoritos usa la lista persistida. `card()` convierte cada país en una tarjeta y enlaza al detalle usando su código ISO alpha‑3 (`cca3`). Los adaptadores `name`, `code`, `capital`, `langs` y `currency` unifican las formas de los datos.
 
-La ficha obtiene el país seleccionado con `/alpha/{ISO3}`. Para el clima usa primero `capitalInfo.latlng` y recurre a `latlng` si el dato de capital no está disponible.
+La ficha obtiene el país seleccionado con `/alpha/{ISO3}` y campos delimitados; si falla, busca el código ISO en el catálogo local. Para localizar la capital, `renderDetail()` consulta Nominatim en `nominatim.openstreetmap.org/search`, limitando la búsqueda al código ISO de dos letras del país. Si la búsqueda falla, usa `capitalInfo.latlng` o, como respaldo, `latlng` del país. El pronóstico consulta esas coordenadas mediante Open‑Meteo Forecast. Si no hay conexión al servicio meteorológico, se conserva la ficha y se muestra un aviso en el panel del clima.
+
+**Nota de mantenimiento:** REST Countries retiró v3.1 y su API v5 actual requiere una clave. `data/countries.json` permite que el módulo siga funcionando hoy. Para activar consultas REST Countries v5 en la versión pública, se debe crear un backend o función serverless que use la clave del lado del servidor; no se debe incluir esa clave en `js/app.js` ni en archivos servidos al navegador.
 
 ## 5. Integración Open‑Meteo
 
-En `renderDetail()`, la latitud y longitud se interpolan en la consulta `https://api.open-meteo.com/v1/forecast`. Se solicitan variables actuales y máximas/mínimas diarias para cinco días, junto con zona horaria automática. `weatherDescription()` traduce los códigos WMO más habituales y la plantilla presenta el resultado.
+En `renderDetail()`, las coordenadas encontradas se interpolan en la consulta `https://api.open-meteo.com/v1/forecast`. Se solicitan variables actuales y máximas/mínimas diarias para cinco días, junto con zona horaria automática. `weatherDescription()` traduce los códigos WMO más habituales y la plantilla presenta el resultado.
 
 No se envían claves. Un error de red o ausencia de coordenadas no invalida el resto de la ficha.
 

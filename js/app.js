@@ -7,14 +7,14 @@
   const get = key => { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; } };
   const set = (key, value) => localStorage.setItem(key, JSON.stringify(value));
   const name = c => c?.name?.common || c?.name || 'Destino';
-  const code = c => c?.cca3 || c?.code || '';
-  const capital = c => c?.capital?.[0] || c?.capital || 'Sin capital registrada';
+  const code = c => c?.cca3 || c?.alpha3Code || c?.code || '';
+  const capital = c => (Array.isArray(c?.capital) ? c.capital[0] : c?.capital) || 'Sin capital registrada';
   const population = c => Number(c?.population || 0).toLocaleString('es-CO');
   const flag = c => c?.flags?.svg || c?.flag || '';
   const region = c => c?.region || 'Otra región';
   const regionLabel = value => ({Americas:'Américas',Europe:'Europa',Asia:'Asia',Africa:'África',Oceania:'Oceanía',Antarctic:'Antártida'}[value] || value || 'Otra región');
-  const langs = c => Object.values(c?.languages || {}).join(', ') || 'No disponible';
-  const currency = c => Object.values(c?.currencies || {}).map(x => `${x.name} (${x.symbol || ''})`).join(', ') || 'No disponible';
+  const langs = c => (Array.isArray(c?.languages) ? c.languages.map(x => x.name) : Object.values(c?.languages || {})).filter(Boolean).join(', ') || 'No disponible';
+  const currency = c => (Array.isArray(c?.currencies) ? c.currencies : Object.values(c?.currencies || {})).map(x => `${x.name || x.code || ''}${x.symbol ? ` (${x.symbol})` : ''}`).filter(Boolean).join(', ') || 'No disponible';
   const favorites = () => get(KEYS.favorites);
   const trips = () => get(KEYS.trips);
   const title = document.title.split(' · ')[0];
@@ -40,13 +40,22 @@
   }
   async function loadCountries() {
     const container = $('[data-country-results]'); if (!container) return;
-    container.innerHTML = '<p class="app-status">Cargando destinos desde REST Countries…</p>';
+    container.innerHTML = '<p class="app-status">Cargando destinos…</p>';
     try {
-      const response = await fetch(`${API}/all?fields=name,cca3,capital,region,subregion,population,flags,languages,currencies,capitalInfo,latlng,maps`);
-      if (!response.ok) throw new Error('No fue posible consultar REST Countries.');
-      countries = (await response.json()).filter(c => c.name?.common).sort((a,b) => name(a).localeCompare(name(b),'es'));
+      try {
+        const response = await fetch(`${API}/all?fields=name,cca3,cca2,capital,region,subregion,population,flags,languages,currencies,capitalInfo,latlng,maps,timezones`);
+        if (!response.ok) throw new Error('No fue posible consultar el servicio de destinos.');
+        countries = await response.json();
+        if (!Array.isArray(countries)) throw new Error('El servicio devolvió una respuesta inesperada.');
+      } catch {
+        const response = await fetch('data/countries.json');
+        if (!response.ok) throw new Error('No se pudo cargar la lista local de destinos.');
+        countries = await response.json();
+        toast('Mostrando la lista local de destinos.');
+      }
+      countries = countries.filter(c => c.name).sort((a,b) => name(a).localeCompare(name(b),'es'));
       renderCountries();
-    } catch (error) { container.innerHTML = `<div class="app-status app-error">${esc(error.message)} Revisa tu conexión e inténtalo de nuevo. <button class="boton boton--sm boton--contorno" data-action="reload">Reintentar</button></div>`; }
+    } catch (error) { container.innerHTML = `<div class="app-status app-error">${esc(error.message)} Revisa que la app esté abierta desde su servidor local y vuelve a intentar. <button class="boton boton--sm boton--contorno" data-action="reload">Reintentar</button></div>`; }
   }
   function renderCountries() {
     const container = $('[data-country-results]'); if (!container) return;
@@ -76,15 +85,37 @@
     const id = new URLSearchParams(location.search).get('country') || 'ESP';
     shell('<p class="app-status">Consultando país y clima…</p>');
     try {
-      const response = await fetch(`${API}/alpha/${encodeURIComponent(id)}?fields=name,cca3,capital,region,subregion,population,flags,languages,currencies,capitalInfo,latlng,maps,timezones`);
-      if (!response.ok) throw new Error('Destino no encontrado.');
-      const data = await response.json(), c = Array.isArray(data) ? data[0] : data;
+      let c;
+      try {
+        const response = await fetch(`${API}/alpha/${encodeURIComponent(id)}?fields=name,cca3,cca2,capital,region,subregion,population,flags,languages,currencies,capitalInfo,latlng,maps,timezones`);
+        if (!response.ok) throw new Error('No fue posible consultar el destino.');
+        const data = await response.json(); c = Array.isArray(data) ? data[0] : data;
+      } catch {
+        const localResponse = await fetch('data/countries.json');
+        const localCountries = localResponse.ok ? await localResponse.json() : [];
+        c = localCountries.find(country => code(country) === id);
+        if (!c) throw new Error('Destino no encontrado.');
+        toast('Mostrando datos locales del destino.');
+      }
       const saved = favorites().some(x => code(x) === code(c));
       const coords = c.capitalInfo?.latlng || c.latlng;
+      let weatherCoords = coords;
+      const countryCode = c.alpha2Code || c.cca2;
+      if (countryCode && capital(c) !== 'Sin capital registrada') {
+        try {
+          const query = new URLSearchParams({city:capital(c),countrycodes:countryCode.toLowerCase(),format:'jsonv2',limit:'5'});
+          const geoResponse = await fetch(`https://nominatim.openstreetmap.org/search?${query}`);
+          const places = geoResponse.ok ? await geoResponse.json() : [];
+          const place = places[0];
+          if (place) weatherCoords = [Number(place.lat),Number(place.lon)];
+        } catch { /* Conserva las coordenadas del país si falla la búsqueda de capital. */ }
+      }
       let climate = '<p class="app-status">No hay coordenadas suficientes para consultar el clima.</p>';
-      if (coords?.length >= 2) {
-        const w = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords[0]}&longitude=${coords[1]}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=5&timezone=auto`);
-        if (w.ok) { const j = await w.json(); climate = `<div class="app-weather"><div><span class="app-kicker">${esc(capital(c))} AHORA</span><strong>${Math.round(j.current.temperature_2m)}°C</strong><p>${weatherDescription(j.current.weather_code)} · sensación ${Math.round(j.current.apparent_temperature)}°C</p></div><p>Viento: ${Math.round(j.current.wind_speed_10m)} km/h<br>Humedad: ${j.current.relative_humidity_2m}%<br>Precipitación: ${j.current.precipitation} mm</p></div><div class="app-forecast">${j.daily.time.map((day,i)=>`<div><strong>${new Date(`${day}T12:00:00`).toLocaleDateString('es-CO',{weekday:'short',day:'numeric'})}</strong><span>${weatherDescription(j.daily.weather_code[i])}</span><b>${Math.round(j.daily.temperature_2m_max[i])}° / ${Math.round(j.daily.temperature_2m_min[i])}°</b><small>Lluvia ${j.daily.precipitation_probability_max?.[i] ?? '—'}%</small></div>`).join('')}</div>`; }
+      if (weatherCoords?.length >= 2) {
+        try {
+          const w = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${weatherCoords[0]}&longitude=${weatherCoords[1]}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=5&timezone=auto`);
+          if (w.ok) { const j = await w.json(); climate = `<div class="app-weather"><div><span class="app-kicker">${esc(capital(c))} AHORA</span><strong>${Math.round(j.current.temperature_2m)}°C</strong><p>${weatherDescription(j.current.weather_code)} · sensación ${Math.round(j.current.apparent_temperature)}°C</p></div><p>Viento: ${Math.round(j.current.wind_speed_10m)} km/h<br>Humedad: ${j.current.relative_humidity_2m}%<br>Precipitación: ${j.current.precipitation} mm</p></div><div class="app-forecast">${j.daily.time.map((day,i)=>`<div><strong>${new Date(`${day}T12:00:00`).toLocaleDateString('es-CO',{weekday:'short',day:'numeric'})}</strong><span>${weatherDescription(j.daily.weather_code[i])}</span><b>${Math.round(j.daily.temperature_2m_max[i])}° / ${Math.round(j.daily.temperature_2m_min[i])}°</b><small>Lluvia ${j.daily.precipitation_probability_max?.[i] ?? '—'}%</small></div>`).join('')}</div>`; }
+        } catch { climate = '<p class="app-status">No se pudo consultar el clima. La información del país sigue disponible.</p>'; }
       }
       const main = $('#contenido');
       main.innerHTML = `<div class="app-wrap"><a href="explorar.html" class="app-back">← Volver a explorar</a><section class="app-detail-head">${flag(c)?`<img src="${esc(flag(c))}" alt="Bandera de ${esc(name(c))}">`:''}<div><p class="app-kicker">${esc(region(c))}${c.subregion?` · ${esc(c.subregion)}`:''}</p><h1>${esc(name(c))}</h1><p>Capital: ${esc(capital(c))}</p></div><button class="boton ${saved?'boton--contorno':'boton--primario'}" data-action="favorite" data-code="${esc(code(c))}">${saved?'♥ En favoritos':'♡ Agregar a favoritos'}</button></section><div class="app-detail-grid"><section class="app-panel"><h2>Información general</h2><dl class="app-facts"><div><dt>Población</dt><dd>${population(c)}</dd></div><div><dt>Idiomas</dt><dd>${esc(langs(c))}</dd></div><div><dt>Moneda</dt><dd>${esc(currency(c))}</dd></div><div><dt>Zona horaria</dt><dd>${esc(c.timezones?.[0] || 'No disponible')}</dd></div><div><dt>Coordenadas</dt><dd>${coords?coords.map(n=>Number(n).toFixed(2)).join(', '):'No disponible'}</dd></div><div><dt>Región</dt><dd>${esc(c.subregion || region(c))}</dd></div></dl>${coords?`<a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=${coords[0]}&mlon=${coords[1]}#map=6/${coords[0]}/${coords[1]}">Ver ubicación en OpenStreetMap ↗</a>`:''}</section><section class="app-panel"><h2>Clima en ${esc(capital(c))}</h2>${climate}<p class="app-attribution">Pronóstico consultado en Open‑Meteo según las coordenadas de la capital.</p></section></div></div>`;
@@ -92,8 +123,8 @@
     } catch (error) { shell(`<div class="app-status app-error">${esc(error.message)} <a href="explorar.html">Volver a explorar destinos</a></div>`); }
   }
   function renderHome() {
-    shell(`<section class="app-hero"><p class="app-kicker">TU PRÓXIMA AVENTURA EMPIEZA AQUÍ</p><h1>Planea tu viaje en un solo lugar</h1><p>Explora países, revisa el clima y organiza las ideas de tu próximo viaje.</p><form id="home-search" class="app-search"><input name="q" type="search" placeholder="¿A dónde quieres ir?" aria-label="Buscar destino"><button class="boton boton--primario">Explorar destinos</button></form></section><section class="app-home-section"><div class="app-section-head"><div><p class="app-kicker">INSPIRACIÓN PARA VIAJAR</p><h2>Destinos populares</h2></div><a href="explorar.html">Ver todos →</a></div><div class="app-grid" data-featured></div></section><section class="app-home-section app-steps"><h2>Tu viaje, paso a paso</h2><div><article><b>1</b><h3>Explora</h3><p>Busca países e información desde REST Countries.</p></article><article><b>2</b><h3>Guarda</h3><p>Arma tu lista de favoritos, disponible en este navegador.</p></article><article><b>3</b><h3>Planifica</h3><p>Crea un itinerario y agrega actividades para cada día.</p></article></div></section>`, '');
-    const form = $('#home-search'); form?.addEventListener('submit', e => { e.preventDefault(); location.href = `explorar.html?q=${encodeURIComponent(form.q.value)}`; });
+    shell(`<section class="app-hero"><p class="app-kicker">TU PRÓXIMA AVENTURA EMPIEZA AQUÍ</p><h1>Planea tu viaje en un solo lugar</h1><p>Explora países, revisa el clima y organiza las ideas de tu próximo viaje.</p><form id="home-search" class="app-search"><input name="q" type="search" placeholder="¿A dónde quieres ir?" aria-label="Buscar destino"><button class="boton boton--primario">Explorar destinos</button></form></section><section class="app-home-section"><div class="app-section-head"><div><p class="app-kicker">INSPIRACIÓN PARA VIAJAR</p><h2>Destinos populares</h2></div><a href="explorar.html">Ver todos →</a></div><div class="app-grid" data-featured></div></section><section class="app-home-section app-steps"><h2>Tu viaje, paso a paso</h2><div><article><b>1</b><h3>Explora</h3><p>Busca países, capitales y banderas con REST Countries.</p></article><article><b>2</b><h3>Guarda</h3><p>Arma tu lista de favoritos, disponible en este navegador.</p></article><article><b>3</b><h3>Planifica</h3><p>Crea un itinerario y agrega actividades para cada día.</p></article></div></section>`, '');
+    const form = $('#home-search'); form?.addEventListener('submit', e => { e.preventDefault(); location.href = `explorar.html?actualizacion=3&q=${encodeURIComponent(form.q.value)}`; });
     const fav = favorites(); const picks = fav.length ? fav.slice(0,4) : [{cca3:'COL',name:{common:'Colombia'},capital:['Bogotá'],region:'Americas',flags:{svg:'https://flagcdn.com/co.svg'},population:52000000},{cca3:'ESP',name:{common:'España'},capital:['Madrid'],region:'Europe',flags:{svg:'https://flagcdn.com/es.svg'},population:48000000},{cca3:'JPN',name:{common:'Japón'},capital:['Tokio'],region:'Asia',flags:{svg:'https://flagcdn.com/jp.svg'},population:124000000},{cca3:'ITA',name:{common:'Italia'},capital:['Roma'],region:'Europe',flags:{svg:'https://flagcdn.com/it.svg'},population:59000000}];
     $('[data-featured]').innerHTML = picks.map(card).join('');
     const q = new URLSearchParams(location.search).get('q'); if (q) { form.q.value = q; }
@@ -106,7 +137,7 @@
     form.addEventListener('submit', e => { e.preventDefault(); const d = Object.fromEntries(new FormData(form)); if (d.end < d.start) { $('#form-feedback').textContent = 'La fecha final debe ser igual o posterior a la fecha inicial.'; form.end.focus(); return; } const current = trips(); current.unshift({...d, travelers:Number(d.travelers),budget:Number(d.budget||0),activities:[]}); set(KEYS.trips,current); renderTrips(); toast('Itinerario guardado en este navegador.'); });
   }
   function renderAbout() {
-    shell(`<section class="app-panel"><h2>Planifica con información conectada</h2><p>easytravel reúne exploración de países, consulta del clima, favoritos e itinerarios en una aplicación web.</p><div class="app-detail-grid"><article><h3>REST Countries</h3><p>Países, capitales, banderas, región, idiomas, monedas y coordenadas.</p><a href="https://restcountries.com/" target="_blank" rel="noopener">Documentación ↗</a></article><article><h3>Open‑Meteo</h3><p>Temperatura actual, sensación térmica, viento y pronóstico de cinco días para la capital.</p><a href="https://open-meteo.com/" target="_blank" rel="noopener">Documentación ↗</a></article><article><h3>OpenStreetMap</h3><p>Abre la ubicación geográfica del país en un mapa público desde su ficha.</p><a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Abrir mapa ↗</a></article></div><h3>Privacidad y almacenamiento</h3><p>Los favoritos y planes se guardan en localStorage dentro de este navegador. No se envían a un servidor. Usa “Exportar lista” para descargar una copia de tus favoritos.</p></section>`, 'Acerca de easytravel');
+    shell(`<section class="app-panel"><h2>Planifica con información conectada</h2><p>easytravel reúne exploración de países, consulta del clima, favoritos e itinerarios en una aplicación web.</p><div class="app-detail-grid"><article><h3>REST Countries</h3><p>Países, capitales, banderas, región, idiomas, monedas y coordenadas.</p><a href="https://restcountries.com/" target="_blank" rel="noopener">API ↗</a></article><article><h3>Open‑Meteo</h3><p>Temperatura actual, sensación térmica, viento y pronóstico de cinco días para la capital.</p><a href="https://open-meteo.com/" target="_blank" rel="noopener">Documentación ↗</a></article><article><h3>Nominatim / OpenStreetMap</h3><p>Busca la capital y obtiene sus coordenadas para consultar el clima.</p><a href="https://nominatim.org/release-docs/latest/api/Search/" target="_blank" rel="noopener">Documentación ↗</a></article></div><h3>Privacidad y almacenamiento</h3><p>Los favoritos y planes se guardan en localStorage dentro de este navegador. No se envían a un servidor. Usa “Exportar lista” para descargar una copia de tus favoritos.</p></section>`, 'Acerca de easytravel');
   }
   document.addEventListener('click', async e => {
     const button = e.target.closest('[data-action]'); if (!button) return;
@@ -125,7 +156,7 @@
   document.addEventListener('input', e => { if (e.target.matches('#country-search')) renderCountries(); });
   document.addEventListener('change', e => { if (e.target.matches('#region-filter')) renderCountries(); });
   document.addEventListener('submit', e => { const form=e.target.closest('.app-activity-form'); if(!form)return; e.preventDefault(); const arr=trips(), item=arr[Number(form.dataset.trip)], value=new FormData(form).get('activity').trim(); if(value){item.activities.push(value);set(KEYS.trips,arr);renderTrips();} });
-  document.addEventListener('submit', e => { if(e.target.id==='home-search'){e.preventDefault();location.href=`explorar.html?q=${encodeURIComponent(e.target.q.value)}`;} });
+  document.addEventListener('submit', e => { if(e.target.id==='home-search'){e.preventDefault();location.href=`explorar.html?actualizacion=3&q=${encodeURIComponent(e.target.q.value)}`;} });
   setCount();
   if (page === 'explorar.html') renderExplore();
   else if (page === 'favoritos.html' || page === 'favoritos-vacio.html') renderFavorites();
