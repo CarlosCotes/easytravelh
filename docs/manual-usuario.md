@@ -10,7 +10,7 @@ Entra a la dirección web publicada o abre la carpeta del proyecto con un servid
 
 La página de inicio explica el flujo y ofrece un buscador. Escribe un país o ciudad y pulsa **Explorar destinos**. También puedes entrar desde el menú a **Explorar destinos**.
 
-![Página de inicio de easytravel](images/easytravel-inicio.png)
+![Página de inicio de easytravel](images/easytravel-inicio.jpg)
 
 ## 3. Explorar y filtrar países
 
@@ -18,7 +18,7 @@ La lista se carga desde REST Countries. Si el servicio no responde, se muestra l
 
 Pulsa **Ver detalles** para abrir la ficha. El corazón o el botón **Favorito** guarda o quita el país. La búsqueda no distingue mayúsculas y minúsculas.
 
-![Explorador con países, banderas, filtro y acciones](images/easytravel-explorar.png)
+![Explorador con países, banderas, filtro y acciones](images/easytravel-explorar.jpg)
 
 ## 4. Consultar una ficha y el clima
 
@@ -26,13 +26,13 @@ La ficha se abre al seleccionar **Ver detalles**. Allí puedes revisar datos del
 
 Si no está disponible la consulta del clima, la información del país sigue visible y aparece un mensaje en el bloque meteorológico. Pulsa **Volver a explorar** para regresar.
 
-![Ficha de Colombia con información general y clima](images/easytravel-ficha-clima.png)
+![Ficha de Colombia con información general y clima](images/easytravel-ficha-clima.jpg)
 
 ## 5. Gestionar favoritos
 
 Abre **Favoritos** desde el menú. Puedes buscar dentro de la lista, quitar destinos con el botón de favorito y descargar una copia JSON con **Exportar lista**. La lista evita duplicados por código de país.
 
-![Sección de destinos favoritos](images/easytravel-favoritos.png)
+![Sección de destinos favoritos](images/easytravel-favoritos.jpg)
 
 ## 6. Crear y administrar itinerarios
 
@@ -40,7 +40,7 @@ Abre **Mi itinerario** y completa el formulario: nombre, destino, fechas, viajer
 
 En una tarjeta de itinerario agrega actividades usando el campo inferior. Puedes eliminar actividades individuales o borrar el itinerario. Los datos se guardan en el almacenamiento local del navegador.
 
-![Formulario para crear un itinerario](images/easytravel-itinerario.png)
+![Formulario para crear un itinerario](images/easytravel-itinerario.jpg)
 
 ## 7. Si algo no carga
 
